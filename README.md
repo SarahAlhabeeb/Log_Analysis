@@ -55,10 +55,10 @@ CREATE VIEW popularArticles as
         GROUP BY authorsID, articlesTitle, log.path order by views desc;
 ```
 
-* Requests view  created for executing the third query:
+* Requests view created for executing the third query:
 
 ```
-"CREATE VIEW requests as
+CREATE VIEW requests as
                SELECT TO_CHAR(time,'MON DD,YYYY') as Date, Count(*) as Total,
                Sum (CASE WHEN status = '404 NOT FOUND' THEN 1 ELSE 0 END) as Errors
                FROM log
