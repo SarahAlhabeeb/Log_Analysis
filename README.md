@@ -1,4 +1,5 @@
 # Log Analysis Project
+#### Full Stack Web Developer Nano-Degree
 
 ### Overview
 >This project is about building an internal reporting tool for a site, that will use information from the site's database to discover what kind of articles the site's readers like by answering the following questions:
