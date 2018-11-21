@@ -48,19 +48,42 @@ using PostgreSQL for this project:
 ###Views
 * PopularArticles view created for executing the first two queries:
 ```
-CREATE VIEW popularArticles as
-        SELECT articles.title as articlesTitle, articles.author as authorsID, COUNT(log.id) as views
-        FROM articles LEFT JOIN log on '/article/' || articles.slug = log.path
-        GROUP BY authorsID, articlesTitle, log.path order by views desc;
+        CREATE OR REPLACE VIEW popularArticles AS
+        SELECT articles.title AS articlesTitle,
+        articles.author AS authorsID,
+        COUNT(log.id) AS views
+        FROM articles
+        LEFT JOIN log ON '/article/' || articles.slug = log.path
+        GROUP BY authorsID,
+        articlesTitle,
+        log.path
+        ORDER BY views DESC;
 ```
 
 * Requests view  created for executing the third query:
 
 ```
-"CREATE VIEW requests as
-               SELECT TO_CHAR(time,'MON DD,YYYY') as Date, Count(*) as Total,
-               Sum (CASE WHEN status = '404 NOT FOUND' THEN 1 ELSE 0 END) as Errors
-               FROM log
-               GROUP BY Date
-               ORDER BY Date;                                                        
+           CREATE OR REPLACE VIEW requests AS
+           SELECT TO_CHAR(TIME, 'MON DD,YYYY') AS Date,
+                   Count(*) AS Total,
+                   SUM (CASE
+                            WHEN status != '200 OK' THEN 1
+                            ELSE 0
+                        END) AS Errors
+           FROM log
+           GROUP BY Date
+           ORDER BY Date;                                                       
 ```
+
+Note: I provided an SQL script <create_views.sql> that contains the CREATE VIEW statements.
+You can import that script to the "news" database directly from the command line by typing:
+```
+psql -d news -f create_views.sql
+```
+
+#### How to run:
+  Run the python script <logs.py> from the vagrant directory inside the virtual machine, using:
+  ```
+    $ python3 logs.py
+  ```
+  
