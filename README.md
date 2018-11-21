@@ -64,7 +64,6 @@ using PostgreSQL for this project:
 * Requests view created for executing the third query:
 
 ```
-<<<<<<< HEAD
            CREATE OR REPLACE VIEW requests AS
            SELECT TO_CHAR(TIME, 'MON DD,YYYY') AS Date,
                    Count(*) AS Total,
@@ -89,20 +88,3 @@ psql -d news -f create_views.sql
     $ python3 logs.py
   ```
   
-||||||| merged common ancestors
-"CREATE VIEW requests as
-               SELECT TO_CHAR(time,'MON DD,YYYY') as Date, Count(*) as Total,
-               Sum (CASE WHEN status = '404 NOT FOUND' THEN 1 ELSE 0 END) as Errors
-               FROM log
-               GROUP BY Date
-               ORDER BY Date;                                                        
-```
-=======
-CREATE VIEW requests as
-               SELECT TO_CHAR(time,'MON DD,YYYY') as Date, Count(*) as Total,
-               Sum (CASE WHEN status = '404 NOT FOUND' THEN 1 ELSE 0 END) as Errors
-               FROM log
-               GROUP BY Date
-               ORDER BY Date;                                                        
-```
->>>>>>> 2e6f62a11fbcb1c6fc274b51ad0e1925f5f2511a
