@@ -76,14 +76,14 @@ using PostgreSQL for this project:
            ORDER BY Date;                                                       
 ```
 
-Note: I provided an SQL script <create_views.sql> that contains the CREATE VIEW statements.
+Note: I provided an SQL script (create_views.sql) that contains the CREATE VIEW statements.
 You can import that script to the "news" database directly from the command line by typing:
 ```
 psql -d news -f create_views.sql
 ```
 
 #### How to run:
-  Run the python script <logs.py> from the vagrant directory inside the virtual machine, using:
+  Run the python script (logs.py) from the vagrant directory inside the virtual machine, using:
   ```
     $ python3 logs.py
   ```
