@@ -5,8 +5,6 @@ import psycopg2
 conn = psycopg2.connect(database="news")
 cursor = conn.cursor()
 
-# Creating (PopularArticles) view to be used in the first two queries
-
 # Query 1
 
 print("Question 1: What are the most popular three articles of all time?\n")
